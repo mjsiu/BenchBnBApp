@@ -1,9 +1,9 @@
-ApiUtil = {
+var ApiUtil = {
   fetchBenches: function(){
     $.ajax({
       url: "api/benches",
       success: function (benches) {
-        ApiActions.recieveAll(benches);
+        ApiActions.receiveAll(benches);
       }
     })
   }
