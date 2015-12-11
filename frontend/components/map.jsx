@@ -3,40 +3,29 @@ var ReactDOM = require('react-dom');
 var BenchStore = require('../store/bench.js');
 var ApiUtil = require('../util/api_util.js');
 
-var Index = React.createClass ({
+var Map = React.createClass ({
   getInitialState: function() {
     return {
     benches: BenchStore.all()
     }
   },
 
-  onChange: function () {
-    this.setState({benches: BenchStore.all() })
-  },
-
-  componentDidMount: function() {
-    this.benchListener = BenchStore.addListener(this.onChange)
-    ApiUtil.fetchBenches();
-  },
-
-  componentWillUnmount: function () {
-    this.benchListener.remove();
-  },
+  componentDidMount: function(){
+     var map = ReactDOM.findDOMNode(this.refs.map);
+     var mapOptions = {
+       center: {lat: 37.7758, lng: -122.435},
+       zoom: 13
+     };
+     this.map = new google.maps.Map(map, mapOptions);
+   },
 
   render: function () {
-    var benches = this.state.benches.map(function(bench, idx) {
-      return <li key={idx}>{bench.description}</li>
-    });
-
     return (
-      <ul>
-        {benches}
-      </ul>
+      <div className="map" ref="map">
+      </div>
     );
   }
 
 });
 
-
-
-module.exports = Index;
+module.exports = Map;
