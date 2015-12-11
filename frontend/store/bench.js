@@ -2,7 +2,7 @@ var Store = require('flux/utils').Store;
 var AppDispatcher = require('../dispatcher/dispatcher');
 var _benches = [];
 var BenchStore = new Store(AppDispatcher);
- var BenchConstants = require('../constants/bench_constants');
+var BenchConstants = require('../constants/bench_constants');
 
 BenchStore.all = function () {
 return _benches.slice(0);
