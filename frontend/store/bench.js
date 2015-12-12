@@ -6,7 +6,6 @@ var BenchConstants = require('../constants/bench_constants');
 var _benches = [];
 
 BenchStore.all = function () {
-  console.log(_benches);
   return _benches.slice(0);
 };
 
@@ -23,11 +22,5 @@ switch(payload.actionType) {
   }
   BenchStore.__emitChange();
 }
-
-// BenchStore.addEventListener = function (cb) {
-//
-// }
-
-window.BenchStore = BenchStore;
 
 module.exports = BenchStore;

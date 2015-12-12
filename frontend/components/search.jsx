@@ -5,11 +5,6 @@ var Index = require('./index.jsx');
 
 
 var Search = React.createClass ({
-  getInitialState: function() {
-    return {
-    }
-  },
-
   render: function () {
     return (
       <div>

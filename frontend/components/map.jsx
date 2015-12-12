@@ -10,6 +10,23 @@ var Map = React.createClass ({
     }
   },
 
+  onChange: function () {
+    this.setState({benches: BenchStore.all() });
+  },
+
+  setMap: function () {
+    var map = this.map;
+    BenchStore.all().forEach(function(bench) {
+      var myLatLng = {lat: bench.lat, lng: bench.lng};
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map,
+        title: bench.title
+      });
+      marker.setMap(map);
+    });
+  },
+
   componentDidMount: function(){
      var map = ReactDOM.findDOMNode(this.refs.map);
      var mapOptions = {
@@ -17,9 +34,16 @@ var Map = React.createClass ({
        zoom: 13
      };
      this.map = new google.maps.Map(map, mapOptions);
+     this.mapListener = BenchStore.addListener(this.onChange);
+     ApiUtil.fetchBenches();
+   },
+
+   componentWillUnmount: function () {
+     this.mapListener.remove();
    },
 
   render: function () {
+    this.setMap();
     return (
       <div className="map" ref="map">
       </div>
