@@ -10,6 +10,15 @@ var Map = React.createClass ({
     }
   },
 
+  clickMapHandler: function (e) {
+    var lat = e.latLng.lat();
+    var lng = e.latLng.lng();
+    var coords = {};
+    coords.lat = lat;
+    coords.lng = lng;
+    this.props.clickMapHandler(coords);
+  },
+
   onChange: function () {
     this.setState({benches: BenchStore.all() });
   },
@@ -35,6 +44,7 @@ var Map = React.createClass ({
      };
      this.map = new google.maps.Map(map, mapOptions);
      this.mapListener = BenchStore.addListener(this.onChange);
+     this.mapClickListener = google.maps.event.addListener(this.map, "click", this.clickMapHandler);
      ApiUtil.fetchBenches();
    },
 

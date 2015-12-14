@@ -19,8 +19,12 @@ switch(payload.actionType) {
     var result = resetBenches(payload.benches);
     BenchStore.__emitChange();
     break;
+  case BenchConstants.BENCHES_RECEIVED:
+       resetBenches(payload.benches);
+       break;
   }
   BenchStore.__emitChange();
 }
+
 
 module.exports = BenchStore;

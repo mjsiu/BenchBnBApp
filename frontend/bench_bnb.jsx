@@ -1,13 +1,21 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Bench = require('./store/bench.js');
-var ApiUtils = require('./util/api_util.js');
-var Actions = require('./actions/api_actions.js');
-var Index = require('./components/index.jsx');
-var Map = require('./components/map.jsx');
-var Search = require('./components/Search.jsx');
+var Search = require('./components/search.jsx');
+var BenchForm = require('./components/bench_form.jsx');
+var App = require('./components/app.jsx');
+var Router = require('react-router').Router;
+var Route = require('react-router').Route;
+var IndexRoute = require('react-router').IndexRoute;
+
+var routes = (
+    <Route path="/" component={App}>
+      <IndexRoute component={Search}/>
+        <Route path="benches/new" component={BenchForm}/>
+    </Route>
+
+);
 
 document.addEventListener("DOMContentLoaded", function () {
-  ReactDOM.render(<Search/>, document.getElementById('root')
+  ReactDOM.render(<Router>{routes}</Router>, document.getElementById('root')
   );
 });
