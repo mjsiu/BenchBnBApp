@@ -11,7 +11,7 @@ var BenchForm = React.createClass ({
     return ({
       lat: this.props.location.query.lat,
       lng: this.props.location.query.lng,
-      description: 0
+      description: ''
     })
   },
 

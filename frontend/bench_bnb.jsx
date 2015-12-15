@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Search = require('./components/search.jsx');
+var showBench = require('./components/show_bench.jsx');
 var BenchForm = require('./components/bench_form.jsx');
 var App = require('./components/app.jsx');
 var Router = require('react-router').Router;
@@ -11,6 +12,7 @@ var routes = (
     <Route path="/" component={App}>
       <IndexRoute component={Search}/>
         <Route path="benches/new" component={BenchForm}/>
+        <Route path="benches/" component={showBench}/>
     </Route>
 
 );
